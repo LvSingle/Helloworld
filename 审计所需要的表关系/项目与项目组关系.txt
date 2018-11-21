@@ -1,0 +1,28 @@
+1.prj_projectgroup  项目组表
+2.prj_project       项目表
+
+
+
+3.搜索工作事项的语句与表
+       a.监控点所拥有的工作事项
+         jkd_type_data  监控点的表 以及类型与监控点的对应关系
+         supervise_works 监控点对应的工作事项表
+         select a.id workid,work_ids workids from jkd_type_data a ,
+         supervise_works b where a.id = b.data_id and typeid=?
+         这是查询监控点所拥有的工作事项
+
+
+       b.用户项目所拥有的工作事项
+          prj_projectauditcontent 工作事项表
+          prj_usertopermission 在这个表里根据条件可以查出用户所拥有的所有项目
+          jbpm_id_group 在这个表查看当前项目所拥有的工作事项
+
+          select a.prjid,b.workitem_ from prj_usertopermission a,jbpm4_id_group b where a.userid = "13"
+and a.groupname = b.id_ and a.prjid in(select id from prj_project where prjgroupId in
+(select treeid from common_treelevel where tablekey='prj_projectgroup' and (treeId=5 or ancestorpath like '%>5>%'))
+and jkded!='')
+用户在该项目下面所拥有的工作（这里是用户所拥有的所有项目，以及每个用户拥有的项目所有的工作事项）
+
+        c.项目拥有的工作事项
+        prj_projectauditconfig
+        jbom_deplo
