@@ -177,8 +177,7 @@ http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071005.png
 
         flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。
 
-
-            .item {
+.item {
               flex-basis: <length> | auto; /* default auto */
             }
 
